@@ -1,13 +1,60 @@
 <!DOCTYPE html>
-<html ng-app="vollyboard">
+<html lang="en" ng-app="vollyboard">
+
 <head>
-	<title></title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Main Dashboard</title>
+<link href="/ng-app/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+<link href="/ng-app/fonts/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+<link href="/ng-app/stylesheets/style.css" rel="stylesheet" type="text/css" media="all">
+<script src="/ng-app/javascripts/angular.min.js"></script>
+<script src="/ng-app/javascripts/angular-cookies.min.js"></script>
+<script src="/ng-app/javascripts/angular-route.min.js"></script>
+<script src="/ng-app/app.js"></script>
+<script src="/ng-app/controllers/login_controller.js"></script>
 </head>
+
 <body>
-	<a href="/first">first</a>
-	<div ng-view></div>
-	<script src="/ng-app/javascripts/angular.min.js"></script>
-	<script src="/ng-app/javascripts/angular-route.min.js"></script>
-	<script src="/ng-app/app.js"></script>
+
+<div id="main-header"><a href="#menu-toggle" class="navbar-brand" id="menu-toggle" ng-show="isIn">VolleyBall Logo <i class="fa fa-bars"></i></a></div>
+<div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper" ng-show="isIn">
+            <ul class="sidebar-nav">
+                <li><strong>Main Menu</strong></li>
+                <li><a href="#"><i class="fa fa-th-large"></i> Matches Dashboard</a></li>
+                <li class="active"><a href="#"><i class="fa fa-users"></i> Teams</a></li>
+                <li><a href="#"><i class="fa fa-columns"></i> Courts</a></li>
+                <li><a href="#"><i class="fa fa-bolt"></i> Matchs</a></li>
+                <li><a href="#"><i class="fa fa-bullhorn"></i> Referees</a></li>
+                <li><a href="#"><i class="fa fa-file-text-o"></i> Reports</a></li>
+                <li><a href="#"><i class="fa fa-tv"></i> Advertisments</a></li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+        <div id="main-header" class="clearfix"><a href="#" class="navbar-brand">Volleyball Logo</a></div>
+            <div class="container-fluid main-area">
+                <div ng-view></div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+<script src="/ng-app/bootstrap/js/jquery.min.js" type="application/javascript"></script>
+<script src="/ng-app/bootstrap/js/bootstrap.min.js" type="application/javascript"></script>
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>
 </body>
 </html>
