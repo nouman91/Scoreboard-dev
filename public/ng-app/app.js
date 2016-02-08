@@ -1,15 +1,12 @@
 (function(){
-	var app = angular.module('vollyboard',['ngRoute','ngCookies']);
+	var app = angular.module('vollyboard',['ngRoute','ngCookies','ngAnimate','ui.bootstrap','angularUtils.directives.dirPagination','ui.bootstrap.datetimepicker']);
 	app.value('isIn', false);
-	var templateUrls=['/admin-login-success','/team-main']
+	var templateUrls=['/admin_login_success','/team_main','/court_main','/match_title_main','/referee_main','/reports','/match_add']
 	/*******************************************************************************************
 	-- Configuring routes
 	*******************************************************************************************/
 	app.config(function($routeProvider,$locationProvider){
-		/*$locationProvider.html5Mode({
-  			enabled: true,
-  			requireBase: false
-		});*/
+
 		$routeProvider.when('/',{
 			templateUrl:'ng-app/views/public_page.html'
 		})
@@ -18,25 +15,31 @@
 			controller:'LoginController'
 		})
 		$routeProvider.when(templateUrls[0],{
-			templateUrl:'ng-app/views/admin_main.html'
+			templateUrl:'ng-app/views/admin_main.html',
+			controller:'Dummy'
 		})
 		$routeProvider.when(templateUrls[1],{
-			templateUrl:'ng-app/views/team_main.html'
+			controller:'TeamController',
+			templateUrl:'ng-app/views/team_main.html',
 		})
-		$routeProvider.when('/match-add',{
-			templateUrl:'ng-app/views/macth_add.html'
+		$routeProvider.when(templateUrls[2],{
+			templateUrl:'ng-app/views/court_main.html',
+			controller:'CourtController'
 		})
-		$routeProvider.when('/match-update',{
-			templateUrl:'ng-app/views/macth_update.html'
+		$routeProvider.when(templateUrls[3],{
+			templateUrl:'ng-app/views/match_title_main.html',
+			controller:'MatchTitleController'
 		})
-		$routeProvider.when('/team-main',{
-			templateUrl:'ng-app/views/team_main.html'
+		$routeProvider.when(templateUrls[4],{
+			templateUrl:'ng-app/views/referee_main.html',
+			controller:'RefereeController'
 		})
-		$routeProvider.when('/court-main',{
-			templateUrl:'ng-app/views/court_main.html'
+		$routeProvider.when(templateUrls[5],{
+			templateUrl:'ng-app/views/reports.html',
+			controller:'ReportController'
 		})
-		$routeProvider.when('/match-title-main',{
-			templateUrl:'ng-app/views/macth_title_main.html'
+		$routeProvider.when(templateUrls[6],{
+			templateUrl:'ng-app/views/match_add.html'
 		})
 		/*$routeProvider.when('/match-add',{
 			templateUrl:'ng-app/views/macth_add.html'
@@ -49,23 +52,48 @@
 		})*/
 		.otherwise({redirectTo:'/'});
 	})
-	.run(function($rootScope,$location,$cookieStore,isIn){
+	.run(function($rootScope,$location,$cookies,isIn){
 		$rootScope.$on("$routeChangeStart", function(event, next, current) {
-			 $rootScope.globals = $cookieStore.get('globals') || {};
+			var temp=$cookies.get('globals')
+			 $rootScope.globals = $cookies.get('globals') || {};
+			 console.log($rootScope.global);
+			 if(typeof temp!=='undefined'){
+			 	$rootScope.globals=JSON.parse($rootScope.globals);
+			 }
+			 
+			 
+			 var date = new Date();
+			 date.setHours(0,0,0,0);
 
         if ($rootScope.globals.currentUser) {
         	if($rootScope.globals.currentUser.role==="admin"){
-        		if(templateUrls.indexOf($location.path())>=0){
-		      		if(!isIn){
-		      			isIn=true;
-		      		}
-	      		}
+        		if($rootScope.globals.currentUser.rememberMe==false && date>$rootScope.globals.currentUser.creationDate){
+        			$location.path("/login")
+        		}
+        		else{
+        			//if($location.path()==="/login"){//skip login
+        				//$location.path(templateUrls[0]);
+        			//}
+        		}
+        		
         	}
         }
 	     else{
-	     	$location.path("/login")
+	     	if(templateUrls.indexOf($location.path())>=0){
+	     			$location.path("/login")
+	      	}
+	     	
 	     }
 	       
-    });
+    })
+		$rootScope.$on('$viewContentLoaded',function(){
+			if(!isIn){
+				if(templateUrls.indexOf($location.path())>=0){
+					isIn=true;
+					document.getElementById("sidebar-wrapper").style.display = "block"
+				}
+				
+			}
+		});
 	})
 }());

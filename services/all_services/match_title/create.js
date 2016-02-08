@@ -1,11 +1,12 @@
-var models  = require('../models');
+var contextPath=process.cwd();
+var models  = require(contextPath + '/models');
 
 
 //Saving record
 function addRecord(req,res,sendResponse){
 	//saving it
 	models.match_titles.create({
-		title: req.body.title;
+		title: req.body.matchTitle
 	}).then(function(match_title){
 		sendResponse(null,match_title,res);
 	}).catch(function(err){
@@ -14,7 +15,7 @@ function addRecord(req,res,sendResponse){
 }
 
 module.exports={
-	execute:function(req,sendResponse){
-		this.addRecord(req,res,sendResponse);
+	execute:function(req,res,sendResponse){
+		addRecord(req,res,sendResponse);
 	}
 }

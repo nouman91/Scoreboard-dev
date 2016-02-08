@@ -1,13 +1,22 @@
-var models  = require('../models');
+var contextPath=process.cwd();
+var models  = require(contextPath + '/models');
+
 
 function deleteRecords(req,res,sendResponse){
 	models.users.destroy({
 		where:{
-			user_name:req.body.userName
+			user_name:req.body.referees
 		}
 	})
 	.then(function(user){
-		sendResponse(null,user,res);
+		models.users.findAll({ where: { role: 'referee' } }).
+		then(function(users){
+			sendResponse(null,users,res);
+		})
+		.catch(function(err){
+			sendResponse(err,null,res);
+		})
+		
 	})
 	.catch(function(err){
 		sendResponse(err,null,res);
@@ -16,6 +25,6 @@ function deleteRecords(req,res,sendResponse){
 
 module.exports={
 	execute:function(req,res,sendResponse){
-		this.deleteRecords(req,res,sendResponse);
+		deleteRecords(req,res,sendResponse);
 	}
 }

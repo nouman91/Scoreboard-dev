@@ -1,14 +1,10 @@
-var models  = require('../models');
+var contextPath=process.cwd();
+var models  = require(contextPath + '/models');
+
 
 function updateRecord(req,res,sendResponse){
-	models.teams.update(
-		{
-			team_name:req.body.teamName
-		},
-		{
-			team_name:req.body.teamName
-		}
-	)
+
+	models.teams.update({ team_name: req.body.teamName }, { where: {team_name: req.body.oldTeamName} })
 	.then(function(team){
 		sendResponse(null,team,res);
 	})
@@ -19,6 +15,6 @@ function updateRecord(req,res,sendResponse){
 
 module.exports={
 	execute:function(req,res,sendResponse){
-		this.updateRecord(req,res,sendResponse);
+		updateRecord(req,res,sendResponse);
 	}
 }

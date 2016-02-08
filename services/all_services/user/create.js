@@ -1,4 +1,5 @@
-var models  = require('../models');
+var contextPath=process.cwd();
+var models  = require(contextPath + '/models');
 
 
 //Saving record
@@ -6,8 +7,8 @@ function addRecord(req,res,sendResponse){
 	//saving it
 	models.users.create({
 		user_name: req.body.userName,
-		password: req.body.password,
-		role: req.body.role,
+		password: "",
+		role: "referee"
 	}).then(function(user){
 		sendResponse(null,user,res);
 	}).catch(function(err){
@@ -16,7 +17,7 @@ function addRecord(req,res,sendResponse){
 }
 
 module.exports={
-	execute:function(req,sendResponse){
-		this.addRecord(req,res,sendResponse);
+	execute:function(req,res,sendResponse){
+		addRecord(req,res,sendResponse);
 	}
 }

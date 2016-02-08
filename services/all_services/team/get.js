@@ -1,4 +1,6 @@
-var models  = require('../models');
+var contextPath=process.cwd();
+var models  = require(contextPath + '/models');
+
 
 function getRecords(res,sendResponse){
 	models.teams.findAll()
@@ -12,7 +14,7 @@ function getRecords(res,sendResponse){
 
 
 module.exports={
-	execute:function(res,sendResponse){
-		this.getRecords(res,sendResponse);
+	execute:function(req,res,sendResponse){
+		getRecords(res,sendResponse);
 	}
 }

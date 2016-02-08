@@ -4,11 +4,11 @@ var contextPath = process.cwd();
 
 module.exports={
 
-	execute:function(req,type){
-		var index=services.indexOff("service");
-		var service = require(contextPath+"/all_services/"+services[index]+"/"+type+".js");
+	execute:function(service,type){
+		var index=services.indexOf(service);
+		var service = require(contextPath+"/services/all_services/"+services[index]+"/"+type+".js");
 		return service; 
-	}
+	},
 
 	validateServiceExistence:function(service){
 		if(service){

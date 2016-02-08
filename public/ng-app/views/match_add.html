@@ -1,0 +1,172 @@
+                <div class="row">
+                    <div class="col-lg-10">
+                        <h1>Add Match</h1>
+                        <hr>
+                      <div class="row">
+                        <form class="clearfix">
+                          <div class="form-group col-md-12">
+                            <label for="chooseMatchTemplate">Use Match Template</label>
+                            <select class="form-control" id="chooseMatchTemplate">
+                               <option>--Please Select--</option>
+                               <option>Match Template 1</option>
+                               <option>Match Template 2</option>
+                           </select>
+                       </div>
+                       <hr>
+                       <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="chooseLeftTeam">Choose Left Team</label>
+                            <select class="form-control" id="chooseLeftTeam">
+                               <option>--Please Select--</option>
+                               <option>Vikings</option>
+                               <option>Gladiators</option>
+                           </select>
+                       </div>
+                       <div class="form-group">
+                        <label for="chooseMatchTitle">Match Title</label>
+                        <select class="form-control" id="chooseMatchTitle">
+                           <option>--Please Select--</option>
+                           <option>Match title 1</option>
+                           <option>Match title 2</option>
+                       </select>
+                   </div>
+                   <div class="form-group">
+                    <label for="chooseMatchCourt">Choose Court</label>
+                    <select class="form-control" id="chooseMatchCourt">
+                       <option>--Please Select--</option>
+                       <option>Court 1</option>
+                       <option>Court 2</option>
+                   </select>
+               </div>
+               <div class="form-group">
+                <label for="chooseReferee">Match Duration</label>
+                <div class="row">
+                    <div class="col-md-6">
+                       <select class="form-control" id="durationTimeMinutes">
+                        <option>--Choose Minutes--</option>
+                        <option>1 minute</option>
+                        <option>2 minutes</option>
+                        <option>3 minutes</option>
+                        <option>4 minutes</option>
+                        <option>.</option>
+                        <option>.</option>
+                        <option>59 minutes</option>
+                        <option>60 minutes</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                   <select class="form-control" id="durationTimeSeconds">
+                    <option>--Choose Seconds--</option>
+                    <option>1 second</option>
+                    <option>2 seconds</option>
+                    <option>3 seconds</option>
+                    <option>4 seconds</option>
+                    <option>.</option>
+                    <option>.</option>
+                    <option>59 seconds</option>
+                    <option>60 seconds</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="chooseReferee">Schedule Half Time</label>
+        <div class="row">
+            <div class="col-md-6">
+               <select class="form-control" id="halfTimeMinutes">
+                <option>--Choose Minutes--</option>
+                <option>1 minute</option>
+                <option>2 minute</option>
+                <option>3 minute</option>
+                <option>4 minute</option>
+                <option>.</option>
+                <option>.</option>
+                <option>59 minute</option>
+                <option>60 minute</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+           <select class="form-control" id="halfTimeSeconds">
+            <option>--Choose Seconds--</option>
+            <option>1 seconds</option>
+            <option>2 seconds</option>
+            <option>3 seconds</option>
+            <option>4</option>
+            <option>.</option>
+            <option>.</option>
+            <option>59 seconds</option>
+            <option>60 seconds</option>
+        </select>
+    </div>
+</div>
+</div>
+</div>
+<div class="col-md-6">
+  <div class="form-group">
+    <label for="chooseRightTeam">Choose Right Team</label>
+    <select class="form-control" id="chooseRightTeam">
+       <option>--Please Select--</option>
+       <option>Vikings</option>
+       <option>Gladiators</option>
+   </select>
+</div>
+<div class="form-group">
+    <label for="chooseReferee">Choose Referee</label>
+    <select class="form-control" id="chooseReferee">
+       <option>--Please Select--</option>
+       <option>Wilson</option>
+       <option>Kevin</option>
+   </select>
+</div>
+<div class="form-group">
+<label>Choose Date and Time</label>
+<datetimepicker data-ng-model="date"></datetimepicker>
+</div>
+<div class="form-group">
+    <label for="chooseReferee">Schedule Break Time</label>
+    <div class="row">
+        <div class="col-md-6">
+           <select class="form-control" id="breakTimeMinutes">
+            <option>--Choose Minutes--</option>
+            <option>1 minute</option>
+            <option>2 minute</option>
+            <option>3 minute</option>
+            <option>4 minute</option>
+            <option>.</option>
+            <option>.</option>
+            <option>59 minute</option>
+            <option>60 minute</option>
+        </select>
+    </div>
+    <div class="col-md-6">
+       <select class="form-control" id="breakTimeSeconds">
+        <option>--Choose Seconds--</option>
+        <option>1 second</option>
+        <option>2 seconds</option>
+        <option>3 seconds</option>
+        <option>4 seconds</option>
+        <option>.</option>
+        <option>.</option>
+        <option>59 seconds</option>
+        <option>60 seconds</option>
+    </select>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<div class="form-group col-md-12">
+    <label for="saveAsTemplate">Save as Template <span class="text-muted">(optional)</span></label>
+    <input type="text" class="form-control" id="saveAsTemplate" placeholder="Template Name">
+    <p class="small text-muted">Save match data as template and reuse for other matches.</p>
+</div>
+<hr>
+<div class="grid-actions col-md-12">
+   <button type="submit" class="btn btn-primary">Save Match</button>
+   <button type="reset" class="btn btn-danger">Cancel</button>
+</div>
+</form>
+
+</div>  
+</div>
+</div>

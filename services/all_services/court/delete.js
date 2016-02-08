@@ -1,13 +1,21 @@
-var models  = require('../models');
+var contextPath=process.cwd();
+var models  = require(contextPath + '/models');
 
 function deleteRecords(req,res,sendResponse){
 	models.courts.destroy({
 		where:{
-			court_name:req.body.courtName
+			court_name:req.body.courts
 		}
 	})
 	.then(function(court){
-		sendResponse(null,court,res);
+		models.courts.findAll().
+		then(function(courts){
+			sendResponse(null,courts,res);
+		})
+		.catch(function(err){
+			sendResponse(err,null,res);
+		})
+		
 	})
 	.catch(function(err){
 		sendResponse(err,null,res);
@@ -16,6 +24,6 @@ function deleteRecords(req,res,sendResponse){
 
 module.exports={
 	execute:function(req,res,sendResponse){
-		this.deleteRecords(req,res,sendResponse);
+		deleteRecords(req,res,sendResponse);
 	}
 }

@@ -9,29 +9,60 @@
 <meta name="author" content="">
 <title>Main Dashboard</title>
 <link href="/ng-app/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+<link href="/ng-app/bootstrap/css/simple-sidebar.css" rel="stylesheet" type="text/css" media="all">
 <link href="/ng-app/fonts/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
 <link href="/ng-app/stylesheets/style.css" rel="stylesheet" type="text/css" media="all">
-<script src="/ng-app/javascripts/angular.min.js"></script>
+<link href="/ng-app/stylesheets/datetimepicker.css" rel="stylesheet" type="text/css" media="all">
+
+<script src="/ng-app/javascripts/angular.min.js"></script> 
 <script src="/ng-app/javascripts/angular-cookies.min.js"></script>
 <script src="/ng-app/javascripts/angular-route.min.js"></script>
+<script src="/ng-app/javascripts/angular-animate.min.js"></script>
+<script src="/ng-app/javascripts/ui-bootstrap-tpls-1.1.2.min.js"></script>
+<script src="/ng-app/javascripts/dirPagination.js"></script>
+<script src="/ng-app/javascripts/datetimepicker.js"></script>
+<script src="/ng-app/javascripts/datetimepicker.templates.js"></script>
+
 <script src="/ng-app/app.js"></script>
 <script src="/ng-app/controllers/login_controller.js"></script>
+<script src="/ng-app/factories/login_factory.js"></script>
+<script src="/ng-app/services/simple_modal_service.js"></script>
+<script src="/ng-app/services/delete_modal_service.js"></script>
+
+<script src="/ng-app/controllers/team_controller.js"></script>
+<script src="/ng-app/factories/team_factory.js"></script>
+
+<script src="/ng-app/controllers/court_controller.js"></script>
+<script src="/ng-app/factories/court_factory.js"></script>
+
+<script src="/ng-app/controllers/match_title_controller.js"></script>
+<script src="/ng-app/factories/match_title_factory.js"></script>
+
+<script src="/ng-app/controllers/referee_controller.js"></script>
+<script src="/ng-app/factories/referee_factory.js"></script>
+
+<script src="/ng-app/controllers/report_controller.js"></script>
+<script src="/ng-app/factories/report_factory.js"></script>
+
+<script src="/ng-app/controllers/dummy.js"></script>
+
 </head>
 
-<body>
+<body ng-cloak>
 
-<div id="main-header"><a href="#menu-toggle" class="navbar-brand" id="menu-toggle" ng-show="isIn">VolleyBall Logo <i class="fa fa-bars"></i></a></div>
+<div id="main-header"><a href="#menu-toggle" class="navbar-brand" id="menu-toggle">VolleyBall Logo <i class="fa fa-bars"></i></a></div>
 <div id="wrapper">
         <!-- Sidebar -->
-        <div id="sidebar-wrapper" ng-show="isIn">
+        <div id="sidebar-wrapper" style="display:none;">
             <ul class="sidebar-nav">
                 <li><strong>Main Menu</strong></li>
                 <li><a href="#"><i class="fa fa-th-large"></i> Matches Dashboard</a></li>
-                <li class="active"><a href="#"><i class="fa fa-users"></i> Teams</a></li>
-                <li><a href="#"><i class="fa fa-columns"></i> Courts</a></li>
-                <li><a href="#"><i class="fa fa-bolt"></i> Matchs</a></li>
-                <li><a href="#"><i class="fa fa-bullhorn"></i> Referees</a></li>
-                <li><a href="#"><i class="fa fa-file-text-o"></i> Reports</a></li>
+                <li class="active"><a href="#team_main"><i class="fa fa-users"></i> Teams</a></li>
+                <li><a href="#court_main"><i class="fa fa-columns"></i> Courts</a></li>
+                <li><a href="#match_title_main"><i class="fa fa-bolt"></i> Match Titles</a></li>
+                <li><a href="#match_add"><i class="fa fa-bolt"></i> Add Matches</a></li>
+                <li><a href="#referee_main"><i class="fa fa-bullhorn"></i> Referees</a></li>
+                <li><a href="#reports"><i class="fa fa-file-text-o"></i> Reports</a></li>
                 <li><a href="#"><i class="fa fa-tv"></i> Advertisments</a></li>
             </ul>
         </div>
@@ -39,12 +70,11 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-        <div id="main-header" class="clearfix"><a href="#" class="navbar-brand">Volleyball Logo</a></div>
             <div class="container-fluid main-area">
                 <div ng-view></div>
                 </div>
             </div>
-        </div>
+</div>
         <!-- /#page-content-wrapper -->
 
 <script src="/ng-app/bootstrap/js/jquery.min.js" type="application/javascript"></script>
@@ -55,6 +85,7 @@
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
+    $("#wrapper").toggleClass("toggled");
 </script>
 </body>
 </html>
