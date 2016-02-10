@@ -23,14 +23,12 @@
               <th class="col-checkbox"><input type="checkbox" ng-model="selectedAll" ng-change="selectAll()"/></th>
               <th class="col-title" ng-click="sort('match_title')">Match Title
               <span class="glyphicon sort-icon" ng-show="sortKey=='match_title'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
-              <th ng-click="sort('team_a')">Team A
-              <span class="glyphicon sort-icon" ng-show="sortKey=='team_a'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
-              <th ng-click="sort('team_b')">Team B
-              <span class="glyphicon sort-icon" ng-show="sortKey=='team_b'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
-              <th ng-click="sort('match_minutes')">Match Minutes
-              <span class="glyphicon sort-icon" ng-show="sortKey=='match_minutes'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
-              <th ng-click="sort('match_seconds')">Match Seconds
-              <span class="glyphicon sort-icon" ng-show="sortKey=='match_seconds'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+              <th>Teams</th>
+              <th>Duration</th>
+              <th ng-click="sort('referee')">Match Refree
+              <span class="glyphicon sort-icon" ng-show="sortKey=='referee'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+              <th ng-click="sort('court')">Court
+              <span class="glyphicon sort-icon" ng-show="sortKey=='court'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
               <th ng-click="sort('match_date')">Match Date
               <span class="glyphicon sort-icon" ng-show="sortKey=='match_date'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
               <th>&nbsp;</th>
@@ -40,10 +38,11 @@
           <tr dir-paginate="match in matches|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
           <td><input type="checkbox" ng-model="match.selected"/></td>
             <td>{{match.match_title}}</td>
-            <td>{{match.team_a}}</td>
+            <td>{{match.team_a}} vs {{match.team_b}}</td>
             <td>{{match.team_b}}</td>
-            <td>{{match.match_minutes}}</td>
-            <td>{{match.match_seconds}}</td>
+            <td>{{match.match_minutes}} minutes {{match.match_seconds}} seconds</td>
+            <td>{{match.referee}}</td>
+            <td>{{match.court}}</td>
             <td>{{match.match_date}}</td>
            <td><button class="btn btn-default pull-right" ng-click="editItem(match.match_id)">Edit</button></td> 
           </tr>

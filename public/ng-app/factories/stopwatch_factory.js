@@ -1,4 +1,4 @@
-angular.module('vollyboard').factory('StopwatchFactory', ['$interval','socket',function($interval,socket){
+angular.module('vollyboard').factory('StopwatchFactory', ['$interval',function($interval){
     
     return function(options){
 

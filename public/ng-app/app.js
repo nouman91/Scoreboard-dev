@@ -6,7 +6,7 @@
 	/*******************************************************************************************
 	-- Stopwatch directive
 	*******************************************************************************************/
-	angular.module('vollyboard').directive('bbStopwatch', ['StopwatchFactory','socket', function(StopwatchFactory){
+	angular.module('vollyboard').directive('bbStopwatch', ['StopwatchFactory', function(StopwatchFactory){
 		return {
 			restrict: 'EA',
 			scope: true,
