@@ -11,6 +11,7 @@ module.exports=function(sequelize,DataTypes){
 		team_b_score:{type:DataTypes.INTEGER, allowNull:false},
 		referee:{type:DataTypes.STRING, allowNull:false},
 		court:{type:DataTypes.STRING, allowNull:false},
+		match_title:{type:DataTypes.STRING, allowNull:false},
 		match_minutes:{type:DataTypes.INTEGER, allowNull:false},
 		match_seconds:{type:DataTypes.INTEGER, allowNull:false},
 		half_time_minutes:{type:DataTypes.INTEGER, allowNull:false},

@@ -1,0 +1,58 @@
+<div class="row content-top">
+      <div class="col-lg-12">
+          <h1>Matchs</h1>
+          <hr>
+          <div ng-class="appliedClasses" role="alert">
+            <button type="button" ng-click="hideMessage()" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>{{type}}!&nbsp;</strong>{{message}}
+          </div>
+          <div class="grid-actions clearfix text-right">
+              <button class="btn btn-primary" ng-click="showAddMatchView()">Add Match</button>
+              <button class="btn btn-danger" ng-click="deleteMatches()">Delete Match</button>
+           </div>
+               <form class="form-inline">
+                <div class="form-group">
+                    <label >Search</label>
+                    <input type="text" ng-model="search" class="form-control" placeholder="Search">
+                </div>
+            </form>
+            <br />
+          <table class="table table-hover">
+          <thead>
+            <tr>
+              <th class="col-checkbox"><input type="checkbox" ng-model="selectedAll" ng-change="selectAll()"/></th>
+              <th class="col-title" ng-click="sort('match_title')">Match Title
+              <span class="glyphicon sort-icon" ng-show="sortKey=='match_title'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+              <th ng-click="sort('team_a')">Team A
+              <span class="glyphicon sort-icon" ng-show="sortKey=='team_a'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+              <th ng-click="sort('team_b')">Team B
+              <span class="glyphicon sort-icon" ng-show="sortKey=='team_b'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+              <th ng-click="sort('match_minutes')">Match Minutes
+              <span class="glyphicon sort-icon" ng-show="sortKey=='match_minutes'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+              <th ng-click="sort('match_seconds')">Match Seconds
+              <span class="glyphicon sort-icon" ng-show="sortKey=='match_seconds'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+              <th ng-click="sort('match_date')">Match Date
+              <span class="glyphicon sort-icon" ng-show="sortKey=='match_date'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr dir-paginate="match in matches|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
+          <td><input type="checkbox" ng-model="match.selected"/></td>
+            <td>{{match.match_title}}</td>
+            <td>{{match.team_a}}</td>
+            <td>{{match.team_b}}</td>
+            <td>{{match.match_minutes}}</td>
+            <td>{{match.match_seconds}}</td>
+            <td>{{match.match_date}}</td>
+           <td><button class="btn btn-default pull-right" ng-click="editItem(match.match_id)">Edit</button></td> 
+          </tr>
+          </tbody>
+        </table>
+            <dir-pagination-controls
+        max-size="5"
+        direction-links="true"
+        boundary-links="true" >
+    </dir-pagination-controls>
+      </div>
+</div>

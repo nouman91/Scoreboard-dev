@@ -1,5 +1,5 @@
 (function(){
-	var RefereeController = function($scope,RefereeFactory,simpleModalService,deleteModalService){
+	var RefereeController = function($scope,RefereeFactory,$uibModal,$log){
 
 		var alertSuccessClasses="alert alert-success alert-dismissible";
         var alertErorrClasses="alert alert-danger alert-dismissible";
@@ -15,16 +15,28 @@
 		$scope.type="";
 		$scope.message="";
 		$scope.referees=[];
+        $scope.modalOptions={
+             closeButtonText: 'Cancel',
+             actionButtonText: 'Confirm',
+             headerText: 'Delete Team',
+             bodyText: 'Are you sure you want to delete selected team/teams/?'
+
+        }
+        $scope.requiredError="";
+        $scope.validationError="";
+        $scope.lengthError="";
+        $scope.data={modalValue:""};
 
 		function init(){
 			RefereeFactory.getReferees()
 			.success(function(referees){
-				var referee={
-					selected:false,
-					user_name:""
-				}
+				
 
 				for(var i in referees){
+                    var referee={
+                    selected:false,
+                    user_name:""
+                }
 					referee.user_name=referees[i].user_name;
 					$scope.referees.push(referee);
 				}
@@ -88,18 +100,30 @@
 
 
         function deleteSelectedRecords(){
-            var modalOptions = {
+            var options = {
                 closeButtonText: 'Cancel',
                 actionButtonText: 'Confirm',
                 headerText: 'Delete Referee',
                 bodyText: 'Are you sure you want to delete selected Referee/Referees?'
             };
+            $scope.modalOptions=options;
 
-             deleteModalService.showModal({}, modalOptions).then(function (result) {
+                 var modalInstance = $uibModal.open({
+                  animation: $scope.animationsEnabled,
+                  templateUrl: 'ng-app/views/delete_modal.html',
+                  controller: 'ModalInstanceCtrl',
+                  size: '',
+                  bindToController:true,
+                  controllerAs:'RefereeController',
+                  scope:$scope
+                });
+
+             $scope.modalOptions=options;
+             modalInstance.result.then(function () {
                 RefereeFactory.deleteReferees(selectedReferees)
                 .success(function(res){
                     $scope.referees=res;
-                    
+                    $scope.selectedAll=false;
                     showMessageBox(alertSuccessClasses,"Success","Records Deleted successfully")
                 })
                 .error(function(err){
@@ -112,21 +136,30 @@
 		--Add Section
 		*******************************************************************************************/
 		$scope.showAddRefereeModal = function(){
-			var modalOptions = {
+			var options = {
             closeButtonText: 'Cancel',
             actionButtonText: 'Save',
             headerText: 'Add Referee',
             bodyText: 'Referee User Name',
-            name:''
         };
+         $scope.data.modalValue="";
+         $scope.modalOptions=options;
+         var modalInstance = $uibModal.open({
+          animation: $scope.animationsEnabled,
+          templateUrl: 'ng-app/views/simple_modal.html',
+          controller: 'ModalAUSCtrl',
+          size: '',
+          bindToController:true,
+          controllerAs:'RefereeController',
+          scope:$scope
+        });
 
-        simpleModalService.showModal({}, modalOptions).then(function (result) {
-        	$scope.userName = result;
-        	RefereeFactory.addReferee($scope.userName)
+         modalInstance.result.then(function () {
+        	RefereeFactory.addReferee($scope.data.modalValue)
         	.success(function(res){
         		var referee={
         			selected:false,
-        			user_name:$scope.userName
+        			user_name:$scope.data.modalValue
         		}
         		$scope.referees.push(referee);
         		showMessageBox(alertSuccessClasses,"Success","Referee Added successfully");
@@ -153,22 +186,32 @@
 
     $scope.editItem = function(oldUserName){
 
-        var modalOptions = {
+        var options = {
             closeButtonText: 'Cancel',
             actionButtonText: 'Save',
             headerText: 'Update Referee User Name',
-            bodyText: 'Referee User Name',
-            name: oldUserName
+            bodyText: 'Referee User Name'
         };
+         $scope.modalOptions=options;
+         $scope.data.modalValue=oldUserName;
 
-        simpleModalService.showModal({}, modalOptions).then(function (result) {
-            $scope.userName=result;
+        var modalInstance = $uibModal.open({
+          animation: $scope.animationsEnabled,
+          templateUrl: 'ng-app/views/simple_modal.html',
+          controller: 'ModalAUSCtrl',
+          size: '',
+          bindToController:true,
+          controllerAs:'RefereeController',
+          scope:$scope
+        });
 
-            RefereeFactory.updateUserName($scope.userName,oldUserName)
+        modalInstance.result.then(function () {
+
+            RefereeFactory.updateUserName( $scope.data.modalValue,oldUserName)
             .success(function(res){
                for(var i in $scope.referees){
                     if($scope.referees[i].user_name===oldUserName){
-                        $scope.referees[i].user_name=$scope.userName;
+                        $scope.referees[i].user_name= $scope.data.modalValue;
                     }
                }
                 showMessageBox(alertSuccessClasses,"Success","Records Updated successfully");

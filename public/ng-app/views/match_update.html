@@ -8,14 +8,6 @@
                         <strong>{{type}}!&nbsp;</strong>{{message}}
                       </div>
                       <form name="matchForm" class="clearfix" ng-submit="submitForm(matchForm.$valid)" novalidate>
-                        <div class="form-group col-md-12">
-                          <label for="chooseMatchTemplate">Use Match Template</label>
-                          <select class="form-control" id="chooseMatchTemplate" ng-change="update()" ng-model="selectedTemplate">
-                           <option value="">--Please Select--</option>
-                           <option ng-repeat="template in matchData.templates" value="{{template.template_name}}">{{template.template_name}}</option>
-                         </select>
-                       </div>
-                       <hr>
                        <div class="col-md-6">
                         <div class="form-group">
                           <label for="chooseLeftTeam">Choose Left Team</label>
@@ -116,14 +108,9 @@
    </div>
  </div>
  <hr>
- <div class="form-group col-md-12">
-  <label for="saveAsTemplate">Save as Template <span class="text-muted">(optional)</span></label>
-  <input type="text" class="form-control" id="saveAsTemplate" placeholder="Template Name" ng-model="newTemplate">
-  <p class="small text-muted">Save match data as template and reuse for other matches.</p>
-</div>
 <hr>
 <div class="grid-actions col-md-12">
- <button type="submit" class="btn btn-primary">Save Match</button>
+ <button type="submit" class="btn btn-primary">Update Match</button>
  <button type="reset" class="btn btn-danger">Cancel</button>
 </div>
 </form>
