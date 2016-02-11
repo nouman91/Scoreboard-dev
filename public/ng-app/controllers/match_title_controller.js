@@ -18,8 +18,8 @@
     $scope.modalOptions={
      closeButtonText: 'Cancel',
      actionButtonText: 'Confirm',
-     headerText: 'Delete Team',
-     bodyText: 'Are you sure you want to delete selected team/teams/?'
+     headerText: 'Delete Match Title',
+     bodyText: 'Are you sure you want to delete selected Match Title/Match Titles/?'
 
    }
    $scope.requiredError="";
@@ -112,7 +112,7 @@ function deleteSelectedRecords(){
     controller: 'ModalInstanceCtrl',
     size: '',
     bindToController:true,
-    controllerAs:'TeamController',
+    controllerAs:'MatchTitleController',
     scope:$scope
   });
 
@@ -204,6 +204,15 @@ function deleteSelectedRecords(){
       scope:$scope
     });
     modalInstance.result.then(function () {
+      //Check if entered name is unique or not.
+      for(var i in $scope.matchTitles){
+        if($scope.data.modalValue===$scope.matchTitles[i].title){
+          showMessageBox(alertErorrClasses,"Error","Title already exists");
+          $scope.data.modalValue="";
+          return;
+        }
+      }
+
       MatchTitleFactory.updateMatchTitle($scope.data.modalValue,oldMatchTitle)
       .success(function(res){
        for(var i in $scope.matchTitles){

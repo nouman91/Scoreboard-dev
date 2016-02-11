@@ -205,6 +205,14 @@ function deleteSelectedRecords(){
     });
 
     modalInstance.result.then(function () {
+      //Check if entered name is unique or not.
+          for(var i in $scope.courts){
+            if($scope.data.modalValue===$scope.courts[i].court_name){
+              showMessageBox(alertErorrClasses,"Error","Court already exists");
+              $scope.data.modalValue="";
+              return;
+            }
+          }
       CourtFactory.updateCourtName($scope.data.modalValue,oldCourtName)
       .success(function(res){
        for(var i in $scope.courts){

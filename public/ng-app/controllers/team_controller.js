@@ -212,6 +212,14 @@ angular.module('vollyboard').controller('TeamController',['$scope','TeamFactory'
         });
 
         modalInstance.result.then(function () {
+          //Check if entered name is unique or not.
+          for(var i in $scope.teams){
+            if($scope.data.modalValue===$scope.teams[i].team_name){
+              showMessageBox(alertErorrClasses,"Error","Team already exists");
+              $scope.data.modalValue="";
+              return;
+            }
+          }
             TeamFactory.updateTeamName($scope.data.modalValue,oldTeamName)
             .success(function(res){
                for(var i in $scope.teams){

@@ -206,7 +206,14 @@
         });
 
         modalInstance.result.then(function () {
-
+          //Check if entered name is unique or not.
+          for(var i in $scope.referees){
+            if($scope.data.modalValue===$scope.referees[i].user_name){
+              showMessageBox(alertErorrClasses,"Error","Referee already exists");
+              $scope.data.modalValue="";
+              return;
+            }
+          }
             RefereeFactory.updateUserName( $scope.data.modalValue,oldUserName)
             .success(function(res){
                for(var i in $scope.referees){

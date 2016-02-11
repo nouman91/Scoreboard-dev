@@ -40,7 +40,7 @@
 
 	             $cookies.put('globals', JSON.stringify($rootScope.globals));
 	             
-	            $location.path('/admin_login_success');
+	            $location.path('/matches_dashboard');
 	             
 	            
 				 

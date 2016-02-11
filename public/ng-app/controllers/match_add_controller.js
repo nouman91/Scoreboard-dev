@@ -77,6 +77,7 @@
 				.success(function(res){
 					showMessageBox(alertSuccessClasses,"Success","Data Saved successfully");
 					$scope.matchData.templates=res;
+					clearFormValues()
 
 				})
 				.error(function(err){
@@ -119,6 +120,21 @@
 			$scope.matchDateTime 		= null;
 		}
 		
+	}
+
+	function clearFormValues(){
+		$scope.teamA 				= "";
+		$scope.teamB 				= "";
+		$scope.referee 				= "";
+		$scope.court 				= "";
+		$scope.matchTitle			= "";
+		$scope.matchMinutes 		= null;
+		$scope.matchSeconds 		= null;
+		$scope.halfTimeMinutes 		= null;
+		$scope.halfTimeSeconds 		= null;
+		$scope.breakTimeMinutes 	= null;
+		$scope.breakTimeSeconds 	= null;
+		$scope.matchDateTime 		= null;
 	}
 
 };

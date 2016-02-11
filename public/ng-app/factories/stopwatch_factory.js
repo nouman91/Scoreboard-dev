@@ -86,6 +86,9 @@ angular.module('vollyboard').factory('StopwatchFactory', ['$interval',function($
           self.options.elapsedTime.setTime(0);
           timeElapsed = offset = 0;
         };
+        self.cancelTimer = function(){
+          $interval.cancel(interval);
+        };
 
         return self;
 
