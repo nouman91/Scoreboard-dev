@@ -1,0 +1,23 @@
+
+<!-- Bootstrap core CSS -->
+<link href="/ng-app/stylesheets/signin.css" rel="stylesheet" type="text/css" media="all">
+
+<div class="container">
+  <div ng-class="appliedClasses" role="alert">
+    <button type="button" ng-click="hideMessage()" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>{{type}}!&nbsp;</strong>{{message}}
+  </div>
+
+  <form class="form-signin" method="POST" ng-submit="submitForm()">
+    <h2 class="form-signin-heading">Select Court</h2>
+    <label for="inputUserName" class="sr-only">Court</label>
+    <!--<select ng-mdoel="selectedCourt" class="form-control">
+      <option value="">--Please Select--</option>
+      <option ng-repeat="court in courts" value="{{court.court_name}}">{{court.court_name}}</option>
+    </select>-->
+    <input type="User Name" id="inputUserName" class="form-control" placeholder="Court Name" required autofocus ng-model="selectedCourt">
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Enter</button>
+  </form>
+
+</div> <!-- /container -->

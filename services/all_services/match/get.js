@@ -58,7 +58,7 @@ function getDataForAddMatch(res,sendResponse){
 
 function getMatches(res,sendResponse)
 {
-	models.matches.findAll().
+	models.matches.findAll({order:[['match_date','ASC']]}).
 	then(function(matches){
 		sendResponse(null,matches,res);
 	})

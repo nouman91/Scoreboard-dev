@@ -17,10 +17,17 @@
 		$scope.breakTimeSeconds;
 		$scope.halfTimeMinutes;
 		$scope.halfTimeSeconds;
+		$scope.timeOutMinutes;
+		$scope.timeOutSeconds;
 		$scope.newTemplate="";
 		$scope.timeValues=[];
+		$scope.secondValues=[];
+		$scope.secondValues.push(0);
 		for(var i=1;i<=60;i++){
 			$scope.timeValues.push(i);
+			if(i<=59){
+				$scope.secondValues.push(i);
+			}
 		}
 		$scope.matchData=[];
 		$scope.selectedTemplate="";
@@ -73,11 +80,11 @@
 				}
 			}
 				MatchFactory.addNewMatch($scope.matchDateTime,$scope.teamA,$scope.teamB,$scope.matchTitle,$scope.referee,$scope.court,$scope.matchMinutes,$scope.matchSeconds,$scope.breakTimeMinutes,
-					$scope.breakTimeSeconds,$scope.halfTimeMinutes,$scope.halfTimeSeconds,$scope.newTemplate)
+					$scope.breakTimeSeconds,$scope.halfTimeMinutes,$scope.halfTimeSeconds,$scope.newTemplate,$scope.timeOutMinutes,$scope.timeOutSeconds)
 				.success(function(res){
 					showMessageBox(alertSuccessClasses,"Success","Data Saved successfully");
 					$scope.matchData.templates=res;
-					clearFormValues()
+					clearFormValues();
 
 				})
 				.error(function(err){
@@ -101,6 +108,8 @@
 				$scope.halfTimeSeconds 		= $scope.matchData.templates[i].half_time_seconds;
 				$scope.breakTimeMinutes 	= $scope.matchData.templates[i].break_time_minutes;
 				$scope.breakTimeSeconds 	= $scope.matchData.templates[i].break_time_seconds;
+				$scope.timeOutMinutes 		= $scope.matchData.templates[i].timout_time_minutes;
+				$scope.timeOutSeconds 		= $scope.matchData.templates[i].timout_time_seconds;
 				$scope.matchDateTime 		= $scope.matchData.templates[i].match_date;			
 			}
 		}
@@ -117,11 +126,16 @@
 			$scope.halfTimeSeconds 		= null;
 			$scope.breakTimeMinutes 	= null;
 			$scope.breakTimeSeconds 	= null;
+			$scope.timeOutMinutes 		= null;
+			$scope.timeOutSeconds 		= null;
 			$scope.matchDateTime 		= null;
+			$scope.newTemplate="";
 		}
 		
 	}
-
+	$scope.reset = function(){
+		clearFormValues();
+	}
 	function clearFormValues(){
 		$scope.teamA 				= "";
 		$scope.teamB 				= "";
@@ -134,7 +148,10 @@
 		$scope.halfTimeSeconds 		= null;
 		$scope.breakTimeMinutes 	= null;
 		$scope.breakTimeSeconds 	= null;
+		$scope.timeOutMinutes 		= null;
+		$scope.timeOutSeconds 		= null;
 		$scope.matchDateTime 		= null;
+		$scope.newTemplate="";
 	}
 
 };

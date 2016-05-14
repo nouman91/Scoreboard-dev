@@ -1,5 +1,5 @@
 (function(){
-	var MatchUpdateController = function($scope,MatchFactory){
+	var MatchUpdateController = function($scope,MatchFactory,$location){
 
 		var alertSuccessClasses="alert alert-success alert-dismissible";
 		var alertErorrClasses="alert alert-danger alert-dismissible";
@@ -17,10 +17,17 @@
 		$scope.breakTimeSeconds;
 		$scope.halfTimeMinutes;
 		$scope.halfTimeSeconds;
+		$scope.timeOutMinutes;
+		$scope.timeOutSeconds;
 		$scope.newTemplate="";
 		$scope.timeValues=[];
+		$scope.secondValues=[];
+		$scope.secondValues.push(0);
 		for(var i=1;i<=60;i++){
 			$scope.timeValues.push(i);
+			if(i<=59){
+				$scope.secondValues.push(i);
+			}
 		}
 		$scope.matchData=[];
 		$scope.selectedTemplate="";
@@ -75,16 +82,22 @@
 				}
 			}
 				MatchFactory.updateMatch($scope.matchDateTime,$scope.teamA,$scope.teamB,$scope.matchTitle,$scope.referee,$scope.court,$scope.matchMinutes,$scope.matchSeconds,$scope.breakTimeMinutes,
-					$scope.breakTimeSeconds,$scope.halfTimeMinutes,$scope.halfTimeSeconds,$scope.matchId)
+					$scope.breakTimeSeconds,$scope.halfTimeMinutes,$scope.halfTimeSeconds,$scope.matchId,$scope.timeOutMinutes,$scope.timeOutSeconds)
 				.success(function(res){
 					showMessageBox(alertSuccessClasses,"Success","Data Saved successfully");
 					$scope.matchData.templates=res;
+
+					clearFormValues();
 
 				})
 				.error(function(err){
 					showMessageBox(alertErorrClasses,'Error',err);
 				})
 			}
+	}
+
+	$scope.cancel = function(){
+		$location.path('/match_ud');
 	}
 
 	function setValues(matchForUpDate){
@@ -99,9 +112,30 @@
 		$scope.halfTimeSeconds 		= matchForUpDate.half_time_seconds;
 		$scope.breakTimeMinutes 	= matchForUpDate.break_time_minutes;
 		$scope.breakTimeSeconds 	= matchForUpDate.break_time_seconds;
+		$scope.timeOutMinutes 		= matchForUpDate.timout_time_minutes;
+		$scope.timeOutSeconds 		= matchForUpDate.timout_time_seconds;
 		$scope.matchDateTime 		= matchForUpDate.match_date;
 		$scope.matchId 				= matchForUpDate.match_id;
 	}
+
+	function clearFormValues(){
+		$scope.teamA 				= "";
+		$scope.teamB 				= "";
+		$scope.referee 				= "";
+		$scope.court 				= "";
+		$scope.matchTitle			= "";
+		$scope.matchMinutes 		= null;
+		$scope.matchSeconds 		= null;
+		$scope.halfTimeMinutes 		= null;
+		$scope.halfTimeSeconds 		= null;
+		$scope.breakTimeMinutes 	= null;
+		$scope.breakTimeSeconds 	= null;
+		$scope.timeOutMinutes 		= null;
+		$scope.timeOutSeconds 		= null;
+		$scope.matchDateTime 		= null;
+	}
+
+
 
 };
 

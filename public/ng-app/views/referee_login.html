@@ -1,0 +1,18 @@
+
+<!-- Bootstrap core CSS -->
+<link href="/ng-app/stylesheets/signin.css" rel="stylesheet" type="text/css" media="all">
+
+<div class="container">
+  <div ng-class="appliedClasses" role="alert">
+    <button type="button" ng-click="hideMessage()" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>{{type}}!&nbsp;</strong>{{message}}
+  </div>
+
+  <form class="form-signin" method="POST" ng-submit="submitForm()">
+    <h2 class="form-signin-heading">Enter User Name</h2>
+    <label for="inputUserName" class="sr-only">User Name</label>
+    <input type="User Name" id="inputUserName" class="form-control" placeholder="User Name" required autofocus ng-model="userName">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Enter</button>
+  </form>
+
+</div> <!-- /container -->

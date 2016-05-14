@@ -14,6 +14,8 @@ function updateMatch(req,res,sendResponse){
 		half_time_seconds:req.body.halfTimeSeconds,
 		break_time_minutes:req.body.breakTimeMinutes,
 		break_time_seconds:req.body.breakTimeSeconds,
+		timout_time_minutes:req.body.timeoutTimeMinutes,
+		timout_time_seconds:req.body.timeoutTimeSeconds,
 		match_date:req.body.matchDateTime,
 		match_status:"saved"
 	}, 

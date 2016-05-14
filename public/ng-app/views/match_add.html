@@ -39,7 +39,7 @@
                      </select>
                    </div>
                    <div class="form-group">
-                    <label for="chooseReferee">Match Duration</label>
+                    <label for="chooseReferee"><i class="fa fa-clock-o"></i> Match Duration</label>
                     <div class="row">
                       <div class="col-md-6">
                        <select class="form-control" id="durationTimeMinutes" ng-model="matchMinutes" required>
@@ -50,13 +50,13 @@
                     <div class="col-md-6">
                      <select class="form-control" id="durationTimeSeconds" ng-model="matchSeconds" required>
                       <option value="">--Choose Seconds--</option>
-                      <option ng-repeat="item in timeValues" value="{{item}}">{{item}}</option>
+                      <option ng-repeat="item in secondValues" value="{{item}}">{{item}}</option>
                     </select>
                   </div>
                 </div>
               </div>
               <div class="form-group">
-                <label for="chooseReferee">Schedule Half Time</label>
+                <label for="chooseReferee"><i class="fa fa-clock-o"></i> Schedule Half Time</label>
                 <div class="row">
                   <div class="col-md-6">
                    <select class="form-control" id="halfTimeMinutes" ng-model="halfTimeMinutes" required>
@@ -67,18 +67,18 @@
                 <div class="col-md-6">
                  <select class="form-control" id="halfTimeSeconds" ng-model="halfTimeSeconds" required>
                    <option value="">--Choose Seconds--</option>
-                  <option ng-repeat="item in timeValues" value="{{item}}">{{item}}</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
+                   <option ng-repeat="item in secondValues" value="{{item}}">{{item}}</option>
+                 </select>
+               </div>
+             </div>
+           </div>
+         </div>
+         <div class="col-md-6">
           <div class="form-group">
             <label for="chooseRightTeam">Choose Right Team</label>
             <select class="form-control" id="chooseRightTeam" ng-model="teamB" required>
-             <option>--Please Select--</option>
-             <option ng-repeat="team in matchData.teams">{{team.team_name}}</option>
+             <option value="">--Please Select--</option>
+             <option ng-repeat="team in matchData.teams" value="{{team.team_name}}">{{team.team_name}}</option>
            </select>
          </div>
          <div class="form-group">
@@ -98,7 +98,7 @@
         </p>
       </div>
       <div class="form-group">
-        <label for="chooseReferee">Schedule Break Time</label>
+        <label for="chooseReferee"><i class="fa fa-clock-o"></i> Schedule Break Time</label>
         <div class="row">
           <div class="col-md-6">
            <select class="form-control" id="breakTimeMinutes" ng-model="breakTimeMinutes" required>
@@ -109,14 +109,31 @@
         <div class="col-md-6">
          <select class="form-control" id="breakTimeSeconds" ng-model="breakTimeSeconds" required>
            <option value="">--Choose Seconds--</option>
-           <option ng-repeat="item in timeValues" value="{{item}}">{{item}}</option>
+           <option ng-repeat="item in secondValues" value="{{item}}">{{item}}</option>
          </select>
        </div>
      </div>
    </div>
- </div>
- <hr>
- <div class="form-group col-md-12">
+   <div class="form-group">
+    <label for="chooseReferee"><i class="fa fa-clock-o"></i> Schedule Timeout Time</label>
+    <div class="row">
+      <div class="col-md-6">
+        <select class="form-control" id="timeoutTimeMinutes" ng-model="timeOutMinutes" required>
+          <option value="">--Choose Minutes--</option>
+          <option ng-repeat="item in timeValues" value="{{item}}">{{item}}</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <select class="form-control" id="timeoutTimeSeconds" ng-model="timeOutSeconds">
+          <option value="">--Choose Seconds--</option>
+           <option ng-repeat="item in secondValues" value="{{item}}">{{item}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="form-group col-md-12">
   <label for="saveAsTemplate">Save as Template <span class="text-muted">(optional)</span></label>
   <input type="text" class="form-control" id="saveAsTemplate" placeholder="Template Name" ng-model="newTemplate">
   <p class="small text-muted">Save match data as template and reuse for other matches.</p>
@@ -124,7 +141,7 @@
 <hr>
 <div class="grid-actions col-md-12">
  <button type="submit" class="btn btn-primary">Save Match</button>
- <button type="reset" class="btn btn-danger">Cancel</button>
+ <button type="reset" class="btn btn-danger" ng-click="reset()">Reset</button>
 </div>
 </form>
 

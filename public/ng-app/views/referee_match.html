@@ -1,0 +1,66 @@
+<div ng-class="appliedClasses" role="alert">
+	<button type="button" ng-click="hideMessage()" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<strong>{{type}}!&nbsp;</strong>{{message}}
+</div>
+
+<!--<div ng-if="watch.length>0">
+<div ng-init="options=watch">
+	<div refree-Stopwatch options="options">
+		<div class="container">
+			<div class="stopWatch numbers">
+				{{options.elapsedTime | stopwatchTime}}
+			</div>
+		</div>
+	</div>
+</div>
+</div>-->
+
+<div class="row">
+
+	<div class="wrapper-match-dashboard wrapper-dashboard-referee">
+		<div class="match-dashboard-meta">
+			<p><span>Court-1:</span> <strong>{{match.matchInfo[0].court}}</strong></p>
+			<p><span>Referee:</span> <strong>{{match.matchInfo[0].referee}}</strong></p>
+			</div>
+			<div class="match-dashboard-single">
+				<div class="counter-goals team-left">
+					<h1>{{match.matchInfo[0].team_a}}</h1>
+					<div class="counter-team-inner">
+						<input type="text" id="counterTeamLeft" value="{{match.runningMatchInfo.team_a_score}}">
+						<div class="match-counter-buttons">
+							<button class="counter-button-up" ng-click="incrementTeamAScore()"><i class="fa fa-caret-up"></i></button>
+							<button class="counter-button-down" ng-click="decrementTeamAScore()"><i class="fa fa-caret-down"></i></button>
+						</div>
+					</div>
+				</div><!--counter-goals ENDS-->
+				<div class="match-clock" ng-if="watch.length>0">
+					<div class="match-clock-inner">
+					    <div ng-init="options=watch">
+					     <div refree-Stopwatch options="options">
+					       		<div class="">
+								<div class="">
+								<input type="text" id="counterTeamLeft"  value=" {{options.elapsedTime | stopwatchTime}}">
+								</div>
+							</div>
+					     </div>
+					    </div>
+						
+					</div>
+				</div><!--match-clock ENDS-->
+				<div class="counter-goals team-right">
+					<h1>{{match.matchInfo[0].team_b}}</h1>
+					<div class="counter-team-inner">
+						<input type="text" id="counterTeamRight" value="{{match.runningMatchInfo.team_b_score}}">
+						<div class="match-counter-buttons">
+							<button class="counter-button-up" ng-click="incrementTeamBScore()"><i class="fa fa-caret-up"></i></button>
+							<button class="counter-button-down" ng-click="decrementTeamBScore()"><i class="fa fa-caret-down"></i></button>
+						</div>
+					</div>
+				</div><!--counter-goals ENDS-->
+			</div>
+		</div>   <!--wrapper-match-dashboard ENDS-->                   
+
+	</div>
+
+	<!--<label>Team A Score: </label><div>{{match.runningMatchInfo.team_a_score}}</div>
+	<label>Team B Score: </label><div>{{match.runningMatchInfo.team_b_score}}</div>-->

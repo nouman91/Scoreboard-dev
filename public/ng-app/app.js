@@ -1,12 +1,12 @@
 (function(){
 	var app = angular.module('vollyboard',['ngRoute','ngCookies','ngAnimate','ui.bootstrap','angularUtils.directives.dirPagination','ui.bootstrap.datetimepicker']);
 	app.value('isIn', false);
-	var templateUrls=['/matches_dashboard','/team_main','/court_main','/match_title_main','/referee_main','/reports','/match_add','/match_ud','/match_update']
+	var templateUrls=['/matches_dashboard','/team_main','/court_main','/match_title_main','/referee_main','/reports','/match_add','/match_ud','/match_update','/court_manager']
 
 	/*******************************************************************************************
 	-- Stopwatch directive
 	*******************************************************************************************/
-	angular.module('vollyboard').directive('bbStopwatch', ['StopwatchFactory', function(StopwatchFactory){
+	angular.module('vollyboard').directive('bbStopwatch', ['StopwatchFactory','socket','ScheduledMatchesFactory', function(StopwatchFactory,socket){
 		return {
 			restrict: 'EA',
 			scope: true,
@@ -21,6 +21,7 @@
 
 					scope.startTimer = stopwatchService.startTimer; 
 					scope.stopTimer = stopwatchService.stopTimer;
+					scope.takeTimeout = stopwatchService.takeTimeout;
 					scope.resetTimer = stopwatchService.resetTimer;
 
 					scope.$on('$destroy', function(node){
@@ -31,6 +32,74 @@
 			}
 		};
 	}])
+	
+
+	/*******************************************************************************************
+	-- Referee Stopwatch directive
+	*******************************************************************************************/
+	angular.module('vollyboard').directive('refreeStopwatch', ['RefreeStopwatchFactory','socket','ScheduledMatchesFactory', function(RefreeStopwatchFactory){
+		return {
+			restrict: 'EA',
+			scope: true,
+			compile: function(tElem, tAttrs){
+				if (!tAttrs.options){
+					throw new Error('Must Pass an options object from the Controller For the Stopwatch to Work Correctly.');
+				}
+
+				return function(scope, elem, attrs){   
+
+					var stopwatchService = new RefreeStopwatchFactory(scope[attrs.options]);
+
+					scope.startTimer = stopwatchService.startTimer; 
+					scope.stopTimer = stopwatchService.stopTimer;
+					scope.resetTimer = stopwatchService.resetTimer;
+
+					scope.$on('$destroy', function(node){
+						stopwatchService.cancelTimer(); 
+					});
+
+					
+
+				}
+			}
+		};
+	}])
+
+
+
+
+	/*******************************************************************************************
+	-- Public Stopwatch directive
+	*******************************************************************************************/
+	angular.module('vollyboard').directive('publicStopwatch', ['PublicStopwatchFactory','socket','ScheduledMatchesFactory', function(PublicStopwatchFactory){
+		return {
+			restrict: 'EA',
+			scope: true,
+			compile: function(tElem, tAttrs){
+				if (!tAttrs.options){
+					throw new Error('Must Pass an options object from the Controller For the Stopwatch to Work Correctly.');
+				}
+
+				return function(scope, elem, attrs){   
+
+					var stopwatchService = new PublicStopwatchFactory(scope[attrs.options]);
+
+					scope.startTimer = stopwatchService.startTimer; 
+					scope.stopTimer = stopwatchService.stopTimer;
+					scope.resetTimer = stopwatchService.resetTimer;
+
+					scope.$on('$destroy', function(node){
+						stopwatchService.cancelTimer(); 
+					});
+
+					
+
+				}
+			}
+		};
+	}])
+
+
 
 	/*******************************************************************************************
 	-- Filter
@@ -61,6 +130,26 @@
 		$routeProvider.when('/',{
 			templateUrl:'ng-app/views/public_page.html'
 		})
+		$routeProvider.when('/referee_login',{
+			templateUrl:'ng-app/views/referee_login.html',
+			controller:'RefereeLoginController'
+		})
+
+		$routeProvider.when('/referee_public/:userName',{
+			templateUrl:'ng-app/views/referee_match.html',
+			controller:'RefereeMatchController'
+		})
+
+		$routeProvider.when('/public_login',{
+			templateUrl:'ng-app/views/public_login.html',
+			controller:'PublicLoginController'
+		})
+
+		$routeProvider.when('/public_dashboard/:court',{
+			templateUrl:'ng-app/views/public_match_board.html',
+			controller:"PublicMatchController"
+		})
+
 		$routeProvider.when('/login',{
 			templateUrl:'ng-app/views/login.html',
 			controller:'LoginController'
@@ -100,6 +189,10 @@
 		$routeProvider.when(templateUrls[8],{
 			templateUrl:'ng-app/views/match_update.html',
 			controller:'MatchUpdateController',
+		})
+		$routeProvider.when(templateUrls[9],{
+			templateUrl:'ng-app/views/court_match_manager.html',
+			controller:'CourtMatchController'
 		})
 		/*$routeProvider.when('/match-add',{
 			templateUrl:'ng-app/views/macth_add.html'
@@ -151,10 +244,12 @@
 			if(templateUrls.indexOf($location.path())>=0){
 				isIn=true;
 				document.getElementById("sidebar-wrapper").style.display = "block"
+				document.getElementById("menu-toggle").style.display = "block"
 			}
 			else{
 				isIn=false;
 				document.getElementById("sidebar-wrapper").style.display = "none"
+				document.getElementById("menu-toggle").style.display = "none"
 			}
 
 		}

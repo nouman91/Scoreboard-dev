@@ -13,6 +13,15 @@
 			return $http(req);
 		}
 
+		factory.validateRefreeUserName = function(userName){
+			var req={
+				method:'GET',
+				url:'app/user',
+				params:{userName:userName,service:service,operation:"refereelogin"}
+			}
+			return $http(req);
+		}
+
 		return factory;
 	}
 

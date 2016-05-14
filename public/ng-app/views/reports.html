@@ -2,63 +2,45 @@
                         <div class="row content-top">
                             <h1>Matches Reports</h1>
                             <hr>
-                            <p>View reports of matches played on a particular date from the following dropdown calendar.</p>
-                            <div class="form-group">
-                                <label>Choose Date and Time</label>
-                                <p class="input-group">
-                                  <input type="text" class="form-control" datetime-picker="dd MMM yyyy HH:mm" ng-model="matchDateTime" is-open="isOpen" required />
-                                  <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default" ng-click="openCalendar($event, prop)"><i class="fa fa-calendar"></i></button>
-                                </span>
-                            </p>
-                        </div>
-                        <div class="clearfix"></div>
-                        <br>
-                        <h3>Reports Generated</h3>
-                        <hr>
-                        <div class="reports-wrapper">
-                        	<div class="col-md-4">
-                               <div class="report-single">
-                                <h4>Report Title</h4>
-                                <ul>
-                                    <li><label>Time: </label> <span>Tue, Feb 5th 2016, 05:08 PM</span></li>
-                                    <li><label>Match Title: </label> <span>Match Title will display here</span></li>
-                                    <li><label>Court: </label> <span>James Court</span></li>
-                                    <li><label>Referee: </label> <span>Wilson</span></li>
-                                    <li><label>Teams & Score: </label> <span><em>Vikings<strong>24</strong></em> <em>Wildcates<strong>12</strong></em></span></li>
-                                    <li><label>Winning Team: </label> <span>Vikings</span></li>
-                                    <li><label>Match Duration: </label> <span>60 Minutes, 23 Seconds</span></li>
-                                </ul>
+                            <div ng-class="appliedClasses" role="alert">
+                                <button type="button" ng-click="hideMessage()" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <strong>{{type}}!&nbsp;</strong>{{message}}
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                           <div class="report-single">
-                            <h4>Report Title</h4>
-                            <ul>
-                                <li><label>Time: </label> <span>Tue, Feb 5th 2016, 05:08 PM</span></li>
-                                <li><label>Match Title: </label> <span>Match Title will display here</span></li>
-                                <li><label>Court: </label> <span>James Court</span></li>
-                                <li><label>Referee: </label> <span>Wilson</span></li>
-                                <li><label>Teams & Score: </label> <span><em>Vikings<strong>24</strong></em> <em>Wildcates<strong>12</strong></em></span></li>
-                                <li><label>Winning Team: </label> <span>Vikings</span></li>
-                                <li><label>Match Duration: </label> <span>60 Minutes, 23 Seconds</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                       <div class="report-single">
-                        <h4>Report Title</h4>
-                        <ul>
-                            <li><label>Time: </label> <span>Tue, Feb 5th 2016, 05:08 PM</span></li>
-                            <li><label>Match Title: </label> <span>Match Title will display here</span></li>
-                            <li><label>Court: </label> <span>James Court</span></li>
-                            <li><label>Referee: </label> <span>Wilson</span></li>
-                            <li><label>Teams & Score: </label> <span><em>Vikings<strong>24</strong></em> <em>Wildcates<strong>12</strong></em></span></li>
-                            <li><label>Winning Team: </label> <span>Vikings</span></li>
-                            <li><label>Match Duration: </label> <span>60 Minutes, 23 Seconds</span></li>
-                        </ul>
-                    </div>
+                            <p>View reports of matches played on a particular date from the following dropdown calendar.</p>
+                            <form name="matchForm" ng-submit="getReports(matchForm.$valid)" novalidate>
+                                <div class="col-md-4">
+                                    <span>Choose Date and Time</span>
+                                    <p class="input-group">
+                                        <!--<input type="text" class="form-control" datetime-picker="mediumDate" ng-model="ctrl.dates.date1" is-open="ctrl.open.date1" enable-time="false" datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)" close-on-date-selection="false" datepicker-append-to-body="true" clear-text="Remove" />-->
+
+                                        <input type="text" class="form-control" datetime-picker="mediumDate" ng-model="matchDate" is-open="isOpen" enable-time="false" close-on-date-selection="false" required/>
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="openCalendar($event, prop)"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </p>
+                                </div>
+                                <br/>
+                                <button type="submit" class="btn btn-primary">Get Reports</button>
+                            </form>
+                            <div class="clearfix"></div>
+                            <br>
+                            <h3>Reports Generated</h3>
+                            <hr>
+                            <div class="reports-wrapper">
+                               <div class="col-md-4" ng-repeat="report in reports">
+                               <div class="report-single">
+                                    <h4>Report{{$index}}</h4>
+                                    <ul>
+                                        <li><label>Date: </label> <span>{{report.match_date}}</span></li>
+                                        <li><label>Match Title: </label> <span>{{report.match_title}}</span></li>
+                                        <li><label>Court: </label> <span>{{report.court}}</span></li>
+                                        <li><label>Referee: </label> <span>{{report.referee}}</span></li>
+                                        <li><label>Teams & Score: </label> <span><em>{{report.team_a}}<strong>{{report.team_a_score}}</strong></em> <em>{{report.team_b}}<strong>{{report.team_b_score}}</strong></em></span></li>
+                                        <li><label>Winning Team: </label> <span>{{report.match_status}}</span></li>
+                                        <li><label>Match Duration: </label> <span>{{report.match_minutes}} Minutes,{{report.match_seconds}} Seconds</span></li>
+                                    </ul>
+                                </div>
+                            </div>
                 </div>
             </div>
         </div>
-    </div>

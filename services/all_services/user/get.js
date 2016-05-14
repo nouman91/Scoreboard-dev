@@ -27,6 +27,23 @@ function getUser(req,res,sendResponse){
 		sendResponse(err,null,res);
 	})
 }
+
+
+function getReferee(req,res,sendResponse){
+	models.users.findAll({where:{user_name:req.query.userName,role:'Referee'}})
+	.then(function(user){
+		if(user.length<=0){
+			sendResponse("Inavlid user name",null,res);
+		}
+		else{
+			sendResponse(null,user,res);	
+		}
+		
+	})
+	.catch(function(err){
+		sendResponse("Inavlid user name",null,res);
+	})
+}
 module.exports={
 	execute:function(req,res,sendResponse){
 
@@ -35,6 +52,9 @@ module.exports={
 		}
 		else if(req.query.operation==="getReferees"){
 			getRecords(res,sendResponse);
+		}
+		else if(req.query.operation==="refereelogin"){
+			getReferee(req,res,sendResponse);
 		}
 		
 	}

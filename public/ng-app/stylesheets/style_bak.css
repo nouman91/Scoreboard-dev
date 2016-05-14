@@ -1,0 +1,210 @@
+/* CSS Document */
+
+#wrapper {
+    padding-top: 59px;
+}
+#main-header {
+	padding: 0 0 10px 0;
+	color: #fff;	
+	position: fixed;
+	width: 100%;
+	z-index: 999;
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, .1);
+}
+#main-header a.navbar-brand i {
+	background: rgba(255, 255, 255, .2);
+	border-color: rgba(255, 255, 255, .4);
+	color: #fff;
+	font-size: 17px;
+	display: inline-block;
+	padding: .5em 0.7em;
+	margin-left: 1em;
+	border-radius: 4px;
+	border: 1px solid rgba(255, 255, 255, .2);
+}
+#main-header a.navbar-brand:hover {
+	color: #fff;
+}
+#main-header a.navbar-brand:hover i {
+	background: #fff;
+	border-color: #fff;
+	color: #000;
+}
+#sidebar-wrapper {
+	background: #dce8f3;
+	box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.1) inset;
+	z-index: 998;
+}
+#main-header {
+	background: #2a5982;
+}
+
+#page-content-wrapper {
+	padding: 0;	
+}
+.main-area {
+	padding: 20px 40px;	
+}
+.sidebar-nav {
+ top: 22px;
+}
+.navbar-brand, .navbar-brand:hover, .navbar-brand:focus {
+	color: #fff;	
+	border: none;
+	outline: none;
+}
+.sidebar-nav li strong {
+	color: #111;
+	text-transform: uppercase;
+	display: block;
+	margin-bottom: 0.8em;
+	border-bottom: 1px dashed #8ab2d5;
+	padding-bottom: .3em;
+}
+.sidebar-nav li a {
+	color: #111;	
+}
+.sidebar-nav li a:hover, .sidebar-nav li.active a {
+	background: #c0dcf4;
+	color: #000;
+}
+.sidebar-nav li a i {
+    display: inline-block;
+    float: left;
+    margin-top: 5px;
+    padding: 0.2em;
+    text-align: left;
+    width: 30px;
+}
+.sidebar-nav li {
+    color: #fff;
+    line-height: 30px;
+    text-indent: 20px;
+}
+.dasboard-items-list {
+    display: block;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.dasboard-items-list li {
+	list-style: none;
+	display:inline-block;
+	width: 32.5%;
+	padding: 1em;
+}
+.dasboard-items-list a {
+	padding: 1.5em;
+	border: 2px solid skyblue;
+	border-radius: 10px;
+	width: 100%;
+	height: 220px;
+	display: inline-block;
+	font-size: 22px;
+}
+.dasboard-items-list a i {
+	font-size: 65px;
+	display: block;
+	margin: .2em 0 .6em 0;
+}
+.dasboard-items-list a:hover {
+	text-decoration: none;
+}
+.table > thead > tr > th {
+    background: #dce8f3 none repeat scroll 0 0;
+    border-color: #a8c8e4;
+}
+.table > thead > tr > th.col-checkbox {
+    width: 40px;
+}
+.table > thead > tr > th.col-actions {
+    width: 200px;
+}
+
+.grid-actions {
+    margin-bottom: 0.5em;
+}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+	vertical-align: middle;	
+}
+form hr {
+	clear: both;
+    float: left;
+    margin-bottom: 1.2em;
+    margin-top: .7em;
+    width: 100%;	
+}
+form select option {
+	padding: .2em;
+}
+form .small {
+	margin-top: 0.5em;	
+}
+form .text-muted {
+	font-weight: normal;
+	font-size: 85%;	
+}
+.report-single {
+	background: #f5f5f5;
+	box-shadow: 1px 1px 2px rgba(0,0,0,.4);
+	border-radius: 8px;
+	padding: 2em;
+	margin:1em 0;
+	overflow:hidden;
+}
+.report-single h4 {
+	border-bottom: 1px solid #ccc;
+	padding-bottom: .5em;
+}
+.report-single ul {
+	margin: 0;
+	padding: 0;
+}
+.report-single ul li {
+	list-style: none;
+	padding: .2em 0;
+	display: block;
+	width: 100%;
+	clear: both;
+}
+.report-single ul li label {
+	width: 30%;
+	display: block;
+	float: left;
+}
+.report-single ul li span {
+	display: block;
+	width: 70%;
+	float: left;
+}
+.report-single em {
+	display: inline-block;
+	margin-right: 20px;
+	border-left: 3px solid #bbb;
+	padding-left: 5px;
+}
+.report-single em strong {
+	margin-left: 7px;
+}
+.report-single em strong:before {
+	content: "- ";
+	font-weight: normal;
+}
+li.end-nav-section {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0 0 0.4em;
+}
+li.nav-section {
+    background: rgba(42, 89, 130, 0.15) none repeat scroll 0 0;
+    color: #2a5982;
+    font-size: 11px;
+    font-weight: bold;
+    padding-bottom: 0.2em;
+    padding-right: 0;
+    padding-top: 0.2em;
+    text-transform: uppercase;
+}
+
+.hideIt {
+    display: none;
+ }

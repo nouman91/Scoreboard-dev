@@ -8,7 +8,8 @@ var app = require('../app');
 var debug = require('debug')('app:server');
 var http = require('http');
 var models = require("../models");
-//var io;
+var socket = require("../routes/socket.js")
+var io;
 
 
 /**
@@ -20,10 +21,18 @@ app.set('port', port);
 
 models.sequelize.sync().then(function () {
 var server = http.createServer(app);
-
+io = require('socket.io')(server);
   var server = app.listen(app.get('port'), function() {
     debug('Express server listening on port ' + server.address().port);
-    //io = require('socket.io').listen(app);
+    io.listen(server);
+    io.sockets.on('connection',socket);
+    /*io.on('connection', function(socket){
+      console.log("started");
+      socket.on('timer started', function(msg){
+        io.emit('timer started'+msg, msg);
+      });
+    });*/
+
   });
 
   server.on('error', onError);

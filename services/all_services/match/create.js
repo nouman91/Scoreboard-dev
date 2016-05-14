@@ -1,6 +1,21 @@
 var contextPath=process.cwd();
 var models  = require(contextPath + '/models');
 
+
+function checkSavedMatchesDateAndTime(req,res,sendResponse){
+	models.matches.findAll({ where: { court: req.body.court,match_date:req.body.matchDateTime } })
+	.then(function(matches){
+		if(matches.length>0){
+			sendResponse("Match is already scheduled in this court for this slot",null,res);
+		}
+		else{
+			addMatch(req,res,sendResponse);	
+		}
+	})
+	.catch(function(err){
+		sendResponse("We cannot process your request at this moment. Please try again later",null,res);
+	})
+}
 function addMatch(req,res,sendResponse){
 	models.matches.create({
 		team_a:req.body.teamA,
@@ -14,6 +29,8 @@ function addMatch(req,res,sendResponse){
 		half_time_seconds:req.body.halfTimeSeconds,
 		break_time_minutes:req.body.breakTimeMinutes,
 		break_time_seconds:req.body.breakTimeSeconds,
+		timout_time_minutes:req.body.timeoutTimeMinutes,
+		timout_time_seconds:req.body.timeoutTimeSeconds,
 		match_date:req.body.matchDateTime,
 		match_status:"saved"
 	})
@@ -31,6 +48,8 @@ function addMatch(req,res,sendResponse){
 				half_time_seconds:req.body.halfTimeSeconds,
 				break_time_minutes:req.body.breakTimeMinutes,
 				break_time_seconds:req.body.breakTimeSeconds,
+				timout_time_minutes:req.body.timeoutTimeMinutes,
+				timout_time_seconds:req.body.timeoutTimeSeconds,
 				match_date:req.body.matchDateTime,
 				template_name:req.body.newTemplate,
 				match_status:"saved"
@@ -60,6 +79,6 @@ function addMatch(req,res,sendResponse){
 
 module.exports={
 	execute:function(req,res,sendResponse){
-		addMatch(req,res,sendResponse);
+		checkSavedMatchesDateAndTime(req,res,sendResponse);
 	}
 }

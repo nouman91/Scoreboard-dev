@@ -13,11 +13,11 @@
 			return $http(req);
 		}
 
-		factory.addNewMatch = function(matchDateTime,teamA,teamB,matchTitle,referee,court,matchMinutes,matchSeconds,breakTimeMinutes,breakTimeSeconds,halfTimeMinutes,halfTimeSeconds,newTemplate){
+		factory.addNewMatch = function(matchDateTime,teamA,teamB,matchTitle,referee,court,matchMinutes,matchSeconds,breakTimeMinutes,breakTimeSeconds,halfTimeMinutes,halfTimeSeconds,newTemplate,timeoutTimeMinutes,timeoutTimeSeconds){
 			var req={
 				method:'POST',
 				url:'app/match',
-				data:{service:service, matchDateTime:matchDateTime,teamA:teamA,teamB:teamB,matchTitle:matchTitle,referee:referee,court:court,matchMinutes:matchMinutes,matchSeconds:matchSeconds,breakTimeMinutes:breakTimeMinutes,breakTimeSeconds:breakTimeSeconds,halfTimeMinutes:halfTimeMinutes,halfTimeSeconds:halfTimeSeconds,newTemplate:newTemplate}
+				data:{service:service, matchDateTime:matchDateTime,teamA:teamA,teamB:teamB,matchTitle:matchTitle,referee:referee,court:court,matchMinutes:matchMinutes,matchSeconds:matchSeconds,breakTimeMinutes:breakTimeMinutes,breakTimeSeconds:breakTimeSeconds,halfTimeMinutes:halfTimeMinutes,halfTimeSeconds:halfTimeSeconds,newTemplate:newTemplate,timeoutTimeMinutes:timeoutTimeMinutes,timeoutTimeSeconds:timeoutTimeSeconds}
 			}
 			return $http(req);
 		}
@@ -41,11 +41,11 @@
 			}
 			return $http(req);
 		}
-		factory.updateMatch = function(matchDateTime,teamA,teamB,matchTitle,referee,court,matchMinutes,matchSeconds,breakTimeMinutes,breakTimeSeconds,halfTimeMinutes,halfTimeSeconds,matchId){
+		factory.updateMatch = function(matchDateTime,teamA,teamB,matchTitle,referee,court,matchMinutes,matchSeconds,breakTimeMinutes,breakTimeSeconds,halfTimeMinutes,halfTimeSeconds,matchId,timeoutTimeMinutes,timeoutTimeSeconds){
 			var req={
 				method:'PUT',
 				url:'app/match',
-				data:{service:service, matchDateTime:matchDateTime,teamA:teamA,teamB:teamB,matchTitle:matchTitle,referee:referee,court:court,matchMinutes:matchMinutes,matchSeconds:matchSeconds,breakTimeMinutes:breakTimeMinutes,breakTimeSeconds:breakTimeSeconds,halfTimeMinutes:halfTimeMinutes,halfTimeSeconds:halfTimeSeconds,matchId:matchId}
+				data:{service:service, matchDateTime:matchDateTime,teamA:teamA,teamB:teamB,matchTitle:matchTitle,referee:referee,court:court,matchMinutes:matchMinutes,matchSeconds:matchSeconds,breakTimeMinutes:breakTimeMinutes,breakTimeSeconds:breakTimeSeconds,halfTimeMinutes:halfTimeMinutes,halfTimeSeconds:halfTimeSeconds,matchId:matchId,timeoutTimeMinutes:timeoutTimeMinutes,timeoutTimeSeconds:timeoutTimeSeconds}
 			}
 			return $http(req);
 		}

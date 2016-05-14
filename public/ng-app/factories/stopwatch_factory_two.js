@@ -1,4 +1,4 @@
-angular.module('vollyboard').factory('StopwatchFactory', ['$interval','socket','ScheduledMatchesFactory',function($interval,socket,ScheduledMatchesFactory){
+angular.module('vollyboard').factory('StopwatchFactoryTwo', ['$interval','socket','ScheduledMatchesFactory',function($interval,socket,ScheduledMatchesFactory){
 
     return function(options){
 
@@ -211,7 +211,7 @@ angular.module('vollyboard').factory('StopwatchFactory', ['$interval','socket','
         self.updateTimoutMatchState("");
     };
 
-    self.startTimer = function(){
+    self.startTimerTwo = function(){
         if(self.running === false){
             var date;
             switch(self.options[0].matchState){

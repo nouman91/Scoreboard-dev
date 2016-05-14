@@ -25,6 +25,9 @@ router.get('/teams',ctrl.get);
 router.get('/courts',ctrl.get);
 router.get('/match_title',ctrl.get);
 router.get('/match',ctrl.get);
+router.get('/match_report',ctrl.get);
+router.get('/schedule_match',ctrl.get);
+
 
 /*******************************************************************************************
 -- Configuring POST routes
@@ -34,6 +37,7 @@ router.post('/courts',ctrl.create);
 router.post('/match_title',ctrl.create);
 router.post('/user',ctrl.create);
 router.post('/match',ctrl.create);
+router.post('/schedule_match',ctrl.create);
 
 
 /*******************************************************************************************
@@ -54,6 +58,7 @@ router.put('/courts',ctrl.update);
 router.put('/match_title',ctrl.update);
 router.put('/user',ctrl.update);
 router.put('/match',ctrl.update);
+router.put('/schedule_match',ctrl.update);
 
 
 module.exports = router;

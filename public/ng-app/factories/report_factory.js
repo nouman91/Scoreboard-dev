@@ -3,11 +3,11 @@
 		var service="match_report";
 		var factory={};
 
-		factory.getReports=function(){
+		factory.getReports=function(date){
 			var req={
 				method:'GET',
 				url:'app/match_report',
-				params:{service:service,date:new Date()}
+				params:{service:service,date:date}
 			}
 			return $http(req);
 		}

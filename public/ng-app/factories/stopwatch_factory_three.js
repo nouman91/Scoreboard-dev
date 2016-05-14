@@ -1,4 +1,4 @@
-angular.module('vollyboard').factory('StopwatchFactory', ['$interval','socket','ScheduledMatchesFactory',function($interval,socket,ScheduledMatchesFactory){
+angular.module('vollyboard').factory('StopwatchFactoryThree', ['$interval','socket','ScheduledMatchesFactory',function($interval,socket,ScheduledMatchesFactory){
 
     return function(options){
 

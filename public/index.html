@@ -25,6 +25,7 @@
 <link href="/ng-app/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
 <link href="/ng-app/bootstrap/css/simple-sidebar.css" rel="stylesheet" type="text/css" media="all">
 <link href="/ng-app/fonts/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+<link href='https://fonts.googleapis.com/css?family=Nova+Square' rel='stylesheet' type='text/css'>
 <link href="/ng-app/stylesheets/style.css" rel="stylesheet" type="text/css" media="all">
 
 <!--<script src="/ng-app/javascripts/datetime-picker.min.js"></script>-->
@@ -35,8 +36,6 @@
 <script src="/ng-app/controllers/login_controller.js"></script>
 <script src="/ng-app/factories/login_factory.js"></script>
 
-<!--<script src="/ng-app/services/simple_modal_service.js"></script>
-<script src="/ng-app/services/delete_modal_service.js"></script>-->
 
 <script src="/ng-app/controllers/team_controller.js"></script>
 <script src="/ng-app/factories/team_factory.js"></script>
@@ -55,14 +54,26 @@
 
 <script src="/ng-app/controllers/match_add_controller.js"></script>
 <script src="/ng-app/factories/match_factory.js"></script>
-<!--<script src="/ng-app/factories/socket_factory.js"></script>-->
+<script src="/ng-app/factories/socket_factory.js"></script>
 <script src="/ng-app/factories/stopwatch_factory.js"></script>
-
+<!--<script src="/ng-app/factories/stopwatch_factory_two.js"></script>
+<script src="/ng-app/factories/stopwatch_factory_three.js"></script>
+<script src="/ng-app/factories/stopwatch_factory_four.js"></script>-->
+<script src="/ng-app/factories/referee_watch_factory.js"></script>
+<script src="/ng-app/factories/public_watch_factory.js"></script>
+<script src="/ng-app/factories/scheduled_matches_factory.js"></script>
 <script src="/ng-app/controllers/match_ud_controller.js"></script>
 <script src="/ng-app/controllers/match_update_controller.js"></script>
 
 <script src="/ng-app/controllers/matches_dashboard_controller.js"></script>
+<script src="/ng-app/controllers/referee_match_controller.js"></script>
+<script src="/ng-app/controllers/court_match_controller.js"></script>
 
+
+<script src="/ng-app/controllers/referee_login_controller.js"></script>
+<script src="/ng-app/controllers/public_login_controller.js"></script>
+
+<script src="/ng-app/controllers/public_match_controller.js"></script>
 
 <script src="/ng-app/controllers/dummy.js"></script>
 
@@ -70,7 +81,7 @@
 
 <body ng-cloak>
 
-<div id="main-header"><a href="#menu-toggle" class="navbar-brand" id="menu-toggle">VolleyBall Logo <i class="fa fa-bars"></i></a></div>
+<div id="main-header"><a href="#/" class="navbar-brand">VolleyBall Logo</a><a href="#menu-toggle" class="navbar-brand" id="menu-toggle" style="display:none;"><i class="fa fa-bars"></i></a></div>
 <div id="wrapper">
         <!-- Sidebar -->
         <div id="sidebar-wrapper" style="display:none;">
@@ -81,9 +92,10 @@
                 <li><a href="#court_main"><i class="fa fa-columns"></i> Courts</a></li>
                 <li><a href="#match_title_main"><i class="fa fa-bolt"></i> Match Titles</a></li>
                 <li><a href="#referee_main"><i class="fa fa-bullhorn"></i> Referees</a></li>
+                <li><a href="#court_manager"><i class="fa fa-anchor"></i> Court Match Manager</a></li>
                 <li class="nav-section">Manage Matches</li>
-                <li><a href="#match_add"><i class="fa fa-bolt"></i> Add Matches</a></li>
-                <li><a href="#match_ud"><i class="fa fa-bolt"></i> Match Update/Delete</a></li>
+                <li><a href="#match_add"><i class="fa fa-plus"></i> Add Matches</a></li>
+                <li><a href="#match_ud"><i class="fa fa-cogs"></i></i> Match Update/Delete</a></li>
                 <li class="end-nav-section"></li>
                 <li><a href="#reports"><i class="fa fa-file-text-o"></i> Reports</a></li>
                 <li><a href="#"><i class="fa fa-tv"></i> Advertisments</a></li>

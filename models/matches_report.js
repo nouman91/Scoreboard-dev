@@ -18,9 +18,7 @@ module.exports=function(sequelize,DataTypes){
 		half_time_seconds:{type:DataTypes.INTEGER, allowNull:false},
 		break_time_minutes:{type:DataTypes.INTEGER, allowNull:false},
 		break_time_seconds:{type:DataTypes.INTEGER, allowNull:false},
-		played_minutes:{type:DataTypes.INTEGER, allowNull:false},
-		played_seconds:{type:DataTypes.INTEGER, allowNull:false},
-		match_date:{type:DataTypes.DATE, allowNull:false},
+		match_date:{type:DataTypes.STRING, allowNull:false},
 		match_status:{type:DataTypes.STRING,allowNull:false},
 		match_id:{type:DataTypes.INTEGER,allowNull:false,autoIncrement: true,primaryKey: true}
 	});

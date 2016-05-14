@@ -40,6 +40,8 @@
 						half_time_seconds:matches[i].half_time_seconds,
 						break_time_minutes:matches[i].break_time_minutes,
 						break_time_seconds:matches[i].break_time_seconds,
+						timout_time_minutes:matches[i].timout_time_minutes,
+						timout_time_seconds:matches[i].timout_time_seconds,
 						match_date:matches[i].match_date,
 						match_status:matches[i].match_status,
 						match_id:matches[i].match_id
